@@ -68,34 +68,5 @@
 				<p><input type="submit" value="Verwenden"></p>
 			</form>
 		</div>
-		<div>
-			<h2><a href="steuer.php">steuer.php</a></h2>
-			<p>Berechnet Steuern und Versicherungsbeiträge für Deutschland. Möglicherweise veraltet.</p>
-			<form action="steuer.php" method="post">
-				<table cellpadding="0" cellspacing="0">
-					<tr>
-						<td>Lohnsteuerklasse:&nbsp;</td>
-						<td><input type="text" name="klasse" size="1" maxlength="1" value="1"></td>
-					</tr>
-					<tr>
-						<td>Bruttojahreslohn:&nbsp;</td>
-						<td><input type="text" name="lohn" value="0"></td>
-					</tr>
-					<tr>
-						<td>Kinder:&nbsp;</td>
-						<td><input type="text" name="kiddies" size="2" maxlength="2" value="0"></td>
-					</tr>
-					<tr>
-						<td>Kirche:&nbsp;</td>
-						<td><input id="kirche0" type="radio" name="kirche" value="1" checked>&nbsp;<label for="kirche0">Ja</label> <input id="kirche1" type="radio" name="kirche" value="0">&nbsp;<label for="kirche1">Nein</label></td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td><input type="submit" name="submit" value="Berechnen"> <a href="steuer.php?source">Quelltext</a></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-		
 	</body>
 </html>
