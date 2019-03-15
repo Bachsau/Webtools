@@ -1,0 +1,84 @@
+<!--#if expr="$QUERY_STRING=doctype\=5"--><!DOCTYPE html>
+<!--#elif expr="$QUERY_STRING=doctype\=trans"--><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--#else--><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--#endif--><html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>HTML-Renderer</title>
+		<style type="text/css">
+			html, body#outerBody, div#sourceFrame, textarea#sourceCode, div#renderFrame, div#renderButton, div#renderButton button
+			{
+				display: block;
+				position: absolute;
+				overflow: hidden;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			
+			html, body#outerBody, textarea#sourceCode, div#renderButton
+			{
+				border: 0 none;
+			}
+			
+			html
+			{
+				position: fixed;
+			}
+			
+			div#sourceFrame, textarea#sourceCode, div#renderFrame
+			{
+				box-sizing: border-box;
+				-moz-box-sizing:border-box;
+				-webkit-box-sizing:border-box;
+			}
+			
+			div#sourceFrame, div#renderFrame
+			{
+				width: 50%;
+				border: solid 1px black;
+			}
+			
+			textarea#sourceCode, div#renderFrame
+			{
+				overflow: auto;
+				padding: 10px;
+			}
+			
+			div#renderFrame
+			{
+				left: 50%;
+			}
+			
+			div#renderButton
+			{
+				top: 50%;
+				left: 50%;
+				height: 200px;
+				width: 80px;
+				margin-top: -100px;
+				margin-left: -40px;
+			}
+			
+			div#renderButton button
+			{
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 50px;
+			}
+		</style>
+		<script type="text/javascript">
+			function renderHTML()
+			{
+				document.getElementById('renderFrame').innerHTML = document.getElementById('sourceCode').value;
+			}
+		</script>
+	</head>
+	<body id="outerBody">
+		<div id="sourceFrame"><textarea id="sourceCode" cols="80" rows="24">&lt;!-- Ihre Befehle? --&gt;</textarea></div>
+		<div id="renderFrame"><p>Meine Idee!</p></div>
+		<div id="renderButton"><button onclick="window.renderHTML();">&raquo;<br>&raquo;<br>&raquo;</button></div>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr" lang="de">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Bachsau’s tools</title>
+		<link rel="stylesheet" type="text/css" charset="UTF-8" href="tools.css">
+	</head>
+	<body>
+		<div>
+			<h1>Bachsau’s tools</h1>
+			<p>Für Tools wird keine Garantie übernommen. Die automatische Verwendung durch externe Scripte ist zu unterlassen. <a href="https://github.com/Bachsau/Webtools">Quellcode auf GitHub</a>.</p>
+			<!--#if expr="$HTTPS==on"--><p style="color:green;">Die Verbindung ist verschlüsselt.</p><!--#else--><p>Bitte eine <a href="https://tools.bachsau.com/">verschlüsselte Verbindung benutzen</a>, wenn vertrauliche Daten verarbeitet werden sollen!</p><!--#endif-->
+			<!--#if expr="$REMOTE_ADDR=/:/"--><p style="color:green;">Sie surfen mit IPv6.</p><!--#else--><p style="color:red;">Sie surfen mit IPv4.</p><!--#endif-->
+		</div>
+		<div>
+			<h2><a href="base64file.php">base64file.php</a></h2>
+			<p>Verschlüsselt eine Datei mit Base64. Das Ergebnis kann z.B. als src-Attribut eines &lt;img&gt;-Elements eingetragen werden, um ein Bild in HTML einzubetten.</p>
+			<form enctype="multipart/form-data" action="base64file.php" method="post">
+				<p><input name="userfile" type="file"> <input type="submit" value="Kodieren"></p>
+			</form>
+		</div>
+		<div>
+			<h2><a href="crypt.php">crypt.php</a></h2>
+			<p>Verschlüsselt Zeichenketten.</p>
+			<p>
+				<input id="cryptType0" name="cryptType" type="radio" value="crypt" checked onchange="document.getElementById('cryptString').name = this.value;">&nbsp;<label for="cryptType0">crypt</label>
+				<input id="cryptType1" name="cryptType" type="radio" value="md5" onchange="document.getElementById('cryptString').name = this.value;">&nbsp;<label for="cryptType1">md5</label>
+				<input id="cryptType2" name="cryptType" type="radio" value="sha1" onchange="document.getElementById('cryptString').name = this.value;">&nbsp;<label for="cryptType2">sha1</label>
+				<input id="cryptType3" name="cryptType" type="radio" value="crc32" onchange="document.getElementById('cryptString').name = this.value;">&nbsp;<label for="cryptType3">crc32</label>
+				<input id="cryptType4" name="cryptType" type="radio" value="base64" onchange="document.getElementById('cryptString').name = this.value;">&nbsp;<label for="cryptType4">base64</label>
+				<input id="cryptType5" name="cryptType" type="radio" value="unbase64" onchange="document.getElementById('cryptString').name = this.value;" >&nbsp;<label for="cryptType5">unbase64</label>
+			</p>
+			<form action="crypt.php" method="get">
+				<p><textarea id="cryptString" name="crypt" cols="80" rows="12"></textarea></p>
+				<p><label for="salt0">Salt (crypt):</label>&nbsp;<input id="salt0" name="salt" type="text"> <input type="submit" value="Kodieren"></p>
+			</form>
+		</div>
+		<div>
+			<h2><a href="ip.php">ip.php</a></h2>
+			<p>Zeigt die IP-Adresse an.</p>
+			<p><a href="ip.php?hostname">hostname</a>: Zeigt den Hostname anstelle der IP an. Erfordert einen PTR-Record.</p>
+		</div>
+		<div>
+			<h2><a href="password.php">password.php</a></h2>
+			<p>Generiert sichere Passwörter. Nutzt alle druckbaren ASCII-Zeichen.</p>
+			<form action="password.php" method="get">
+				<p>
+					<label for="length0">Länge:</label>&nbsp;<input id="length0" name="length" type="text" value="16"><br>
+					<input id="anum0" name="anum" type="checkbox" value="1">&nbsp;<label for="anum0">Keine Sonderzeichen</label><br>
+					<input id="idiot0" name="idiot" type="checkbox" value="1" disabled>&nbsp;<label for="idiot0">Idiotensicher (Keine problematischen Zeichen)</label><br>
+					<input id="convert0" name="upper" type="checkbox" value="1" onchange="document.getElementById('convert1').checked = false;">&nbsp;<label for="convert0">Nur Großbuchstaben</label><br>
+					<input id="convert1" name="lower" type="checkbox" value="1" onchange="document.getElementById('convert0').checked = false;">&nbsp;<label for="convert1">Nur Kleinbuchstaben</label>
+				</p>
+				<p><input type="submit" value="Erstellen"></p>
+			</form>
+		</div>
+		<div>
+			<h2><a href="render.shtml">render.shtml</a></h2>
+			<p>Rendert HTML aus einem Eingabefeld per JavaScript. Nützlich für Versuche mit HTML-Code.</p>
+			<form action="render.shtml" method="get">
+				<p>
+					<select name="doctype" size="3">
+						<option value="strict" selected>HTML 4.01 Strict</option>
+						<option value="trans">HTML 4.01 Transitional</option>
+						<option value="5">HTML5</option>
+					</select>
+				</p>
+				<p><input type="submit" value="Verwenden"></p>
+			</form>
+		</div>
+		<div>
+			<h2><a href="steuer.php">steuer.php</a></h2>
+			<p>Berechnet Steuern und Versicherungsbeiträge für Deutschland. Möglicherweise veraltet.</p>
+			<form action="steuer.php" method="post">
+				<table cellpadding="0" cellspacing="0">
+					<tr>
+						<td>Lohnsteuerklasse:&nbsp;</td>
+						<td><input type="text" name="klasse" size="1" maxlength="1" value="1"></td>
+					</tr>
+					<tr>
+						<td>Bruttojahreslohn:&nbsp;</td>
+						<td><input type="text" name="lohn" value="0"></td>
+					</tr>
+					<tr>
+						<td>Kinder:&nbsp;</td>
+						<td><input type="text" name="kiddies" size="2" maxlength="2" value="0"></td>
+					</tr>
+					<tr>
+						<td>Kirche:&nbsp;</td>
+						<td><input id="kirche0" type="radio" name="kirche" value="1" checked>&nbsp;<label for="kirche0">Ja</label> <input id="kirche1" type="radio" name="kirche" value="0">&nbsp;<label for="kirche1">Nein</label></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><input type="submit" name="submit" value="Berechnen"> <a href="steuer.php?source">Quelltext</a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		
+	</body>
+</html>
