@@ -1,8 +1,8 @@
 <?php
 
-header('Content-Type: text/plain; charset=ASCII');
-header('Expires: 0');
+header('Content-Type: text/plain; charset=UTF-8');
 header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+header('Expires: 0');
 header('Pragma: no-cache');
 
 if (isset($_GET['source'])) {
@@ -11,70 +11,83 @@ if (isset($_GET['source'])) {
 	exit();
 }
 
-
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # FOUND SOMETHING INSECURE? PLEASE REPORT!
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-$length = (isset($_GET['length']) && ctype_digit($_GET['length']) && ($_GET['length'] > 0)) ? intval($_GET['length']) : 16;
+$length = (isset($_GET['length']) && ctype_digit($_GET['length'])) ? intval($_GET['length']) : 16;
 
-if ($length > 9999){
-	echo "Du spinnst wohl.";
-	exit(0);
+if ($length < 1 || $length > 9999) {
+	echo "\xe2\x9a\xa0\n";
+	exit();
 }
 
-$count = array();
-$result = '';
+if (isset($_GET['idiot'])) {
+	$uletters = str_split('ABCDEFGHJKLMNPQRSTUVWXYZ');
+	$lletters = str_split('abcdefghijkmnopqrstuvwxyz');
+	$digits = str_split('23456789');
+}
+else {
+	$uletters = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+	$lletters = str_split('abcdefghijklmnopqrstuvwxyz');
+	$digits = str_split('0123456789');
+}
+if (isset($_GET['upper'])) {
+	$letters = &$uletters;
+}
+elseif (isset($_GET['lower'])) {
+	$letters = &$lletters;
+}
+else {
+	$letters = array_merge($uletters, $lletters);
+}
+$num_digits = max(1, round($length * 0.2));
 
-// Zeichenarten festlegen:
-// Buchstaben kommen doppelt so oft vor, wie Zahlen und Sonderzeichen
-$ascii = array
-(
-	str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'),
-	str_split('0123456789')
-);
-
-// Sonderzeichen nur hinzufügen, wenn erlaubt
-if (!isset($_GET['anum']))
-{
-	$ascii[] = str_split('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~');
+if (!isset($_GET['anum'])) {
+	if (isset($_GET['idiot'])) {
+		$signs = str_split('!#$%()*+,-./:;=@[]_{|}');
+	}
+	else {
+		$signs = str_split('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~');
+	}
+	$num_signs = max(1, round($length * 0.25));
+}
+else {
+	$num_signs = 0;
 }
 
-// Zeichenarten zählen
-$ascii_count = count($ascii);
+// Seed RNG
+srand();
 
-// Zeichen mischen und zählen
-for ($i = 0; $i < $ascii_count; $i++)
-{
-	srand();
-	shuffle($ascii[$i]);
-	$count[$i] = count($ascii[$i]);
+// Vary digit and sign count
+$vary = floor($length / 16);
+if ($vary) {
+	$num_digits += rand(-$vary, $vary);
+	if ($num_signs) {
+		$num_signs += rand(-$vary, $vary);
+	}
 }
 
-// Passwort generieren
-for ($i = 0; $i < $length; $i++)
-{
-	// Eine Zeichenart wählen
-	mt_srand();
-	$chartype = mt_rand(0, ($ascii_count - 1) * 2);
-	// mt_srand();
-	if ($chartype >= $ascii_count) $chartype = 0; // mt_rand(0, 1);
-
-	// Ein Zeichen wählen
-	mt_srand();
-	$rand    = mt_rand(0, $count[$chartype] - 1);
-	$result .= $ascii[$chartype][$rand];
+// Build password
+$result = array();
+if ($length > $num_digits) {
+	for ($i = 0; $i < $num_digits; $i++) {
+		$result[] = $digits[array_rand($digits)];
+	}
+	$length -= $num_digits;
+}
+if ($length > $num_signs) {
+	for ($i = 0; $i < $num_signs; $i++) {
+		$result[] = $signs[array_rand($signs)];
+	}
+	$length -= $num_signs;
+}
+for ($i = 0; $i < $length; $i++) {
+	$result[] = $letters[array_rand($letters)];
 }
 
-// Groß-/Kleinschreibung
-if (isset($_GET['upper']))
-{
-	$result = strtoupper($result);
-}
-elseif (isset($_GET['lower']))
-{
-	$result = strtolower($result);
-}
+srand();
+shuffle($result);
 
-// Passwort ausgeben
-echo $result;
+echo implode($result);
+echo "\n";

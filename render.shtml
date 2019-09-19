@@ -77,8 +77,8 @@
 		</script>
 	</head>
 	<body id="outerBody">
-		<div id="sourceFrame"><textarea id="sourceCode" cols="80" rows="24">&lt;!-- Ihre Befehle? --&gt;</textarea></div>
-		<div id="renderFrame"><p>Meine Idee!</p></div>
+		<div id="sourceFrame"><textarea id="sourceCode" cols="80" rows="24">&lt;!-- Your orders? --&gt;</textarea></div>
+		<div id="renderFrame"><p>My ideas!</p></div>
 		<div id="renderButton"><button onclick="window.renderHTML();">&raquo;<br>&raquo;<br>&raquo;</button></div>
 	</body>
 </html>

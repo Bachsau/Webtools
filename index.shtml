@@ -47,7 +47,7 @@
 				<p>
 					<label for="length0">Länge:</label>&nbsp;<input id="length0" name="length" type="text" value="16"><br>
 					<input id="anum0" name="anum" type="checkbox" value="1">&nbsp;<label for="anum0">Keine Sonderzeichen</label><br>
-					<input id="idiot0" name="idiot" type="checkbox" value="1" disabled>&nbsp;<label for="idiot0">Idiotensicher (Keine problematischen Zeichen)</label><br>
+					<input id="idiot0" name="idiot" type="checkbox" value="1">&nbsp;<label for="idiot0">Idiotensicher (Keine problematischen Zeichen)</label><br>
 					<input id="convert0" name="upper" type="checkbox" value="1" onchange="document.getElementById('convert1').checked = false;">&nbsp;<label for="convert0">Nur Großbuchstaben</label><br>
 					<input id="convert1" name="lower" type="checkbox" value="1" onchange="document.getElementById('convert0').checked = false;">&nbsp;<label for="convert1">Nur Kleinbuchstaben</label>
 				</p>
