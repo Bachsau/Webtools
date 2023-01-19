@@ -9,8 +9,8 @@
 		<div>
 			<h1>Bachsau’s tools</h1>
 			<p>Für Tools wird keine Garantie übernommen. Die automatische Verwendung durch externe Scripte ist zu unterlassen. <a href="https://github.com/Bachsau/Webtools">Quellcode auf GitHub</a>.</p>
-			<!--#if expr="$HTTPS==on"--><p style="color:green;">Die Verbindung ist verschlüsselt.</p><!--#else--><p>Bitte eine <a href="https://tools.bachsau.com/">verschlüsselte Verbindung benutzen</a>, wenn vertrauliche Daten verarbeitet werden sollen!</p><!--#endif-->
-			<!--#if expr="$REMOTE_ADDR=/:/"--><p style="color:green;">Sie surfen mit IPv6.</p><!--#else--><p style="color:red;">Sie surfen mit IPv4.</p><!--#endif-->
+			<p><!--#if expr="$HTTPS==on"--><span style="color:green;">Die Verbindung ist verschlüsselt.</span> [<a href="http://tools.bachsau.com/">Entschlüsseln</a>]<!--#else-->Bitte eine <a href="https://tools.bachsau.com/">verschlüsselte Verbindung benutzen</a>, wenn vertrauliche Daten verarbeitet werden sollen!<!--#endif--></p>
+			<p><!--#if expr="$REMOTE_ADDR=/:/"--><span style="color:green;">Sie surfen mit IPv6.</span><!--#else--><span style="color:red;">Sie surfen mit IPv4.</span><!--#endif--></p>
 		</div>
 		<div>
 			<h2><a href="base64file.php">base64file.php</a></h2>
