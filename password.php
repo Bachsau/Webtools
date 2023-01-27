@@ -1,14 +1,32 @@
 <?php
 
-header('Content-Type: text/plain; charset=UTF-8');
-header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-header('Expires: 0');
-header('Pragma: no-cache');
+if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') {
+	$SECURE_URL = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	header('Location: ' . $SECURE_URL, true, 301);
+	header('Content-Type: text/html; charset=UTF-8');
+	echo "<!DOCTYPE html>\n";
+	echo "<html dir=\"ltr\" lang=\"en\">\n";
+	echo "\t<head>\n";
+	echo "\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
+	echo "\t\t<title>Encryption required</title>\n";
+	echo "\t</head>\n";
+	echo "\t<body>\n";
+	echo "\t\t<p>This tool requires an <a href=\"${SECURE_URL}\">encrypted connection</a>.</p>\n";
+	echo "\t</body>\n";
+	echo "</html>\n";
+	exit;
+}
 
 if (isset($_GET['source'])) {
 	header('Content-Type: text/html; charset=UTF-8');
 	highlight_file(__FILE__);
-	exit();
+	exit;
+}
+else {
+	header('Content-Type: text/plain; charset=UTF-8');
+	header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+	header('Expires: 0');
+	header('Pragma: no-cache');
 }
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
