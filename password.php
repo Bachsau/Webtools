@@ -1,4 +1,9 @@
 <?php
+declare(strict_types=1);
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# FOUND SOMETHING INSECURE? PLEASE REPORT!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') {
 	$SECURE_URL = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -17,27 +22,19 @@ if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') {
 	exit;
 }
 
-if (isset($_GET['source'])) {
-	header('Content-Type: text/html; charset=UTF-8');
-	highlight_file(__FILE__);
+header('Content-Type: text/plain; charset=US-ASCII');
+header('Cache-Control: no-store, max-age=0');
+header('X-Robots-Tag: noindex');
+
+$length = (array_key_exists('length', $_GET) && ctype_digit($_GET['length'])) ? intval($_GET['length']) : 16;
+
+if ($length > 9999) {
+	header('HTTP/1.1 400 Bad Request');
+	echo "Maximum length exceeded\n";
 	exit;
 }
-else {
-	header('Content-Type: text/plain; charset=UTF-8');
-	header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-	header('Expires: 0');
-	header('Pragma: no-cache');
-}
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# FOUND SOMETHING INSECURE? PLEASE REPORT!
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-$length = (isset($_GET['length']) && ctype_digit($_GET['length'])) ? intval($_GET['length']) : 16;
-
-if ($length < 1 || $length > 9999) {
-	echo "\xe2\x9a\xa0\n";
-	exit();
+if ($length < 1) {
+	exit;
 }
 
 if (isset($_GET['idiot'])) {
@@ -78,7 +75,7 @@ else {
 srand();
 
 // Vary digit and sign count
-$vary = floor($length / 16);
+$vary = (int) floor($length / 16);
 if ($vary) {
 	$num_digits += rand(-$vary, $vary);
 	if ($num_signs) {
@@ -107,5 +104,4 @@ for ($i = 0; $i < $length; $i++) {
 srand();
 shuffle($result);
 
-echo implode($result);
-echo "\n";
+echo implode($result) . "\n";
