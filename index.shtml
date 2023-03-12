@@ -50,7 +50,7 @@
 				<p>
 					<label for="length0">Length:</label>&nbsp;<input id="length0" name="length" type="text" value="16"><br>
 					<input id="anum0" name="anum" type="checkbox" value="1">&nbsp;<label for="anum0">No special characters</label><br>
-					<input id="idiot0" name="idiot" type="checkbox" value="1">&nbsp;<label for="idiot0">Foolproof (no problematic characters)</label><br>
+					<input id="fool0" name="fool" type="checkbox" value="1">&nbsp;<label for="fool0">Foolproof (no problematic characters)</label><br>
 					<input id="convert0" name="upper" type="checkbox" value="1" onchange="document.getElementById('convert1').checked = false;">&nbsp;<label for="convert0">Only uppercase letters</label><br>
 					<input id="convert1" name="lower" type="checkbox" value="1" onchange="document.getElementById('convert0').checked = false;">&nbsp;<label for="convert1">Only lowercase letters</label>
 				</p>

@@ -37,6 +37,7 @@ if ($length < 1) {
 	exit;
 }
 
+if (array_key_exists('fool', $_GET)) $_GET['idiot'] = $_GET['fool'];
 if (isset($_GET['idiot'])) {
 	$uletters = str_split('ABCDEFGHJKLMNPQRSTUVWXYZ');
 	$lletters = str_split('abcdefghijkmnopqrstuvwxyz');
