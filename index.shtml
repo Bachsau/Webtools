@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html dir="ltr" lang="de">
+<html dir="ltr" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Webtools</title>
@@ -11,20 +11,20 @@
 	<body>
 		<div>
 			<h1>Bachsau’s tools</h1>
-			<p>Für Tools wird keine Garantie übernommen. Die automatische Verwendung durch externe Scripte ist zu unterlassen. <a href="https://github.com/Bachsau/Webtools">Quellcode auf GitHub</a>.</p>
-			<p><!--#if expr="$HTTPS==on"--><span style="color:green;">Die Verbindung ist verschlüsselt.</span> [<a href="http://tools.bachsau.com/">Entschlüsseln</a>]<!--#else-->Bitte eine <a href="https://tools.bachsau.com/">verschlüsselte Verbindung benutzen</a>, wenn vertrauliche Daten verarbeitet werden sollen!<!--#endif--></p>
-			<p><!--#if expr="$REMOTE_ADDR=/:/"--><span style="color:green;">Sie surfen mit IPv6.</span><!--#else--><span style="color:red;">Sie surfen mit IPv4.</span><!--#endif--></p>
+			<p>No warranties are given for the tools on this site. Automated use by external scripts is prohibited. <a href="https://github.com/Bachsau/Webtools">Source code on GitHub</a>.</p>
+			<p><!--#if expr="$HTTPS==on"--><span style="color:green;">The connection is encrypted.</span> [<a href="http://tools.bachsau.com/">decrypt</a>]<!--#else-->Please use an <a href="https://tools.bachsau.com/">encrypted connection</a> if sensitive data is to be processed!<!--#endif--></p>
+			<p><!--#if expr="$REMOTE_ADDR=/:/"--><span style="color:green;">You’re surfing with IPv6.</span><!--#else--><span style="color:red;">You’re surfing with IPv4.</span><!--#endif--></p>
 		</div>
 		<div>
 			<h2><a href="base64file.php">base64file.php</a></h2>
-			<p>Verschlüsselt eine Datei mit Base64. Das Ergebnis kann z.B. als src-Attribut eines &lt;img&gt;-Elements eingetragen werden, um ein Bild in HTML einzubetten.</p>
+			<p>Encodes a file using Base64. The result can be put, for example, in the "src" attribute of an &lt;img&gt; element to embed an image in HTML.</p>
 			<form enctype="multipart/form-data" action="base64file.php" method="post">
-				<p><input name="userfile" type="file"> <input type="submit" value="Kodieren"></p>
+				<p><input name="userfile" type="file"> <input type="submit" value="Encode"></p>
 			</form>
 		</div>
 		<div>
 			<h2><a href="crypt.php">crypt.php</a></h2>
-			<p>Verschlüsselt Zeichenketten.</p>
+			<p>Encrypts character strings.</p>
 			<p>
 				<input id="cryptType0" name="cryptType" type="radio" value="crypt" checked onchange="document.getElementById('cryptString').name = this.value;">&nbsp;<label for="cryptType0">crypt</label>
 				<input id="cryptType1" name="cryptType" type="radio" value="md5" onchange="document.getElementById('cryptString').name = this.value;">&nbsp;<label for="cryptType1">md5</label>
@@ -35,31 +35,31 @@
 			</p>
 			<form action="crypt.php" method="get">
 				<p><textarea id="cryptString" name="crypt" cols="80" rows="12"></textarea></p>
-				<p><label for="salt0">Salt (crypt):</label>&nbsp;<input id="salt0" name="salt" type="text"> <input type="submit" value="Kodieren"></p>
+				<p><label for="salt0">Salt (crypt):</label>&nbsp;<input id="salt0" name="salt" type="text"> <input type="submit" value="Encrypt"></p>
 			</form>
 		</div>
 		<div>
 			<h2><a href="ip.php">ip.php</a></h2>
-			<p>Zeigt die IP-Adresse an.</p>
-			<p><a href="ip.php?hostname">hostname</a>: Zeigt den Hostname anstelle der IP an. Erfordert einen PTR-Record.</p>
+			<p>Shows the IP address.</p>
+			<p><a href="ip.php?hostname">hostname</a>: Shows the hostname instead of the IP. Requires a PTR record.</p>
 		</div>
 		<div>
 			<h2><a href="password.php">password.php</a></h2>
-			<p>Generiert sichere Passwörter. Nutzt alle druckbaren ASCII-Zeichen.</p>
+			<p>Generates secure passwords. Uses all printable ASCII characters.</p>
 			<form action="password.php" method="get">
 				<p>
-					<label for="length0">Länge:</label>&nbsp;<input id="length0" name="length" type="text" value="16"><br>
-					<input id="anum0" name="anum" type="checkbox" value="1">&nbsp;<label for="anum0">Keine Sonderzeichen</label><br>
-					<input id="idiot0" name="idiot" type="checkbox" value="1">&nbsp;<label for="idiot0">Idiotensicher (Keine problematischen Zeichen)</label><br>
-					<input id="convert0" name="upper" type="checkbox" value="1" onchange="document.getElementById('convert1').checked = false;">&nbsp;<label for="convert0">Nur Großbuchstaben</label><br>
-					<input id="convert1" name="lower" type="checkbox" value="1" onchange="document.getElementById('convert0').checked = false;">&nbsp;<label for="convert1">Nur Kleinbuchstaben</label>
+					<label for="length0">Length:</label>&nbsp;<input id="length0" name="length" type="text" value="16"><br>
+					<input id="anum0" name="anum" type="checkbox" value="1">&nbsp;<label for="anum0">No special characters</label><br>
+					<input id="idiot0" name="idiot" type="checkbox" value="1">&nbsp;<label for="idiot0">Foolproof (no problematic characters)</label><br>
+					<input id="convert0" name="upper" type="checkbox" value="1" onchange="document.getElementById('convert1').checked = false;">&nbsp;<label for="convert0">Only uppercase letters</label><br>
+					<input id="convert1" name="lower" type="checkbox" value="1" onchange="document.getElementById('convert0').checked = false;">&nbsp;<label for="convert1">Only lowercase letters</label>
 				</p>
-				<p><input type="submit" value="Erstellen"></p>
+				<p><input type="submit" value="Create"></p>
 			</form>
 		</div>
 		<div>
 			<h2><a href="render.shtml">render.shtml</a></h2>
-			<p>Rendert HTML aus einem Eingabefeld per JavaScript. Nützlich für Versuche mit HTML-Code.</p>
+			<p>Renders HTML from an input field via JavaScript. Useful for tests with HTML code.</p>
 			<form action="render.shtml" method="get">
 				<p>
 					<select name="doctype" size="3">
@@ -68,7 +68,7 @@
 						<option value="5">HTML5</option>
 					</select>
 				</p>
-				<p><input type="submit" value="Verwenden"></p>
+				<p><input type="submit" value="&nbsp;Use&nbsp;"></p>
 			</form>
 		</div>
 	</body>
