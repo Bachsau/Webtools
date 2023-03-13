@@ -1,7 +1,7 @@
-<!--#if expr="$QUERY_STRING=doctype\=5"--><!DOCTYPE html>
-<!--#elif expr="$QUERY_STRING=doctype\=trans"--><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!--#else--><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<!--#endif--><html>
+<!--#if expr="%{QUERY_STRING} =~ /(^|&)doctype=5($|&)/" --><!DOCTYPE html>
+<!--#elif expr="%{QUERY_STRING} =~ /(^|&)doctype=trans($|&)/" --><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--#else --><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--#endif --><html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>HTML-Renderer</title>
