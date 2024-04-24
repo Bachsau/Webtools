@@ -12,7 +12,6 @@
 		<div>
 			<h1>Bachsau’s tools</h1>
 			<p>No warranties are given for the tools on this site. Automated use by external scripts is prohibited. <a href="https://github.com/Bachsau/Webtools">Source code on GitHub</a>.</p>
-			<p><!--#if expr="%{HTTPS} == 'on'" --><span style="color:green;">The connection is encrypted.</span> [<a href="http://<!--#echo var='HTTP_HOST' var='REQUEST_URI' -->">decrypt</a>]<!--#else -->Please use an <a href="https://<!--#echo var='HTTP_HOST' var='REQUEST_URI' -->">encrypted connection</a> if sensitive data is to be processed!<!--#endif --></p>
 			<p><!--#if expr="%{REMOTE_ADDR} =~ /:/" --><span style="color:green;">You’re surfing with IPv6.</span><!--#else --><span style="color:maroon;">You’re surfing with IPv4.</span><!--#endif --></p>
 		</div>
 		<div>
